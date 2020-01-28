@@ -11,13 +11,10 @@ function! s:get_papis_ref()
 	below new | set nonumber | set norelativenumber | call termopen('papis list --format "{doc[ref]}"',{'on_exit': 'OnExit'}) | startinsert
 endfunction
 
-" "main" function. Calls the function which opens the terminal and prints the
-" citation string
+" Prints the citation string
 function! s:papis_cite()
-	call s:get_papis_ref()
 	let l:cite_string='\cite{'.get(g:citation_val,0).'}'
 	exe 'normal! a'.l:cite_string
 endfunction
 
-command! -bang -nargs=* PapisGet call s:get_papis_ref()
-command! -bang -nargs=* Papis call s:papis_cite()
+command! -bang -nargs=* Papis call s:get_papis_ref()
