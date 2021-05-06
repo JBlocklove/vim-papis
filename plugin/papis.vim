@@ -13,8 +13,10 @@ endfunction
 
 " Prints the citation string
 function! s:papis_cite()
-	let l:cite_string='\cite{'.get(g:citation_val,0).'}'
-	exe 'normal! a'.l:cite_string
+	if get(g:citation_val,0) != ""
+		let l:cite_string='\cite{'.get(g:citation_val,0).'}'
+		exe 'normal! a'.l:cite_string
+	endif
 endfunction
 
 command! -bang -nargs=* Papis call s:get_papis_ref()
